@@ -29,6 +29,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+                implementation("io.insert-koin:koin-core:3.4.3")
             }
         }
         val commonTest by getting {
@@ -39,6 +40,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+                implementation("io.insert-koin:koin-android:3.4.3")
             }
         }
     }

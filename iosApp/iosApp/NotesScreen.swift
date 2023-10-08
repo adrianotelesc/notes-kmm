@@ -13,8 +13,17 @@ struct NotesScreen : View {
     @ObservedObject var viewModel = ObservableNotesViewModel()
     
     var body: some View {
-        List(viewModel.uiState.notes, id: \.self) {
-            Text($0.text)
+        NavigationView {
+            List(viewModel.uiState.notes, id: \.self) {
+                Text($0.text)
+            }
+            .toolbar {
+                Button(action: {
+                    viewModel.addNote()
+                }) {
+                    Image(systemName: "plus").imageScale(.large)
+                }
+            }
         }
     }
 }

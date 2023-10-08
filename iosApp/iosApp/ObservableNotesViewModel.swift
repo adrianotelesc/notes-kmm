@@ -15,7 +15,7 @@ class ObservableNotesViewModel: ObservableObject {
     
     private var viewModel: NotesViewModel
     
-    init(viewModel: NotesViewModel = NotesViewModel(noteRepo: NoteRepositoryImpl())) {
+    init(viewModel: NotesViewModel = KoinHelper().notesViewModel) {
         self.viewModel = viewModel
         uiStateWatcher = self.viewModel.watchUiState().watch { [weak self] state in
             self?.uiState = state
@@ -24,5 +24,9 @@ class ObservableNotesViewModel: ObservableObject {
     
     deinit {
         uiStateWatcher?.close()
+    }
+    
+    func addNote() {
+        viewModel.addNote()
     }
 }
