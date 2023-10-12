@@ -35,7 +35,13 @@ class NotesViewModel(
 
     fun addNote() {
         viewModelScope.launch {
-            noteRepo.addNote(Note(text = "This is note ${_uiState.value.notes.size + 1}"))
+            val noteCount = _uiState.value.notes.size + 1
+            val text = if (noteCount % 2 == 0) {
+                "This is note  $noteCount.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Integer congue metus accumsan aliquet vestibulum. Sed pellentesque diam tincidunt ligula sollicitudin porttitor."
+            } else {
+                "This is note $noteCount."
+            }
+            noteRepo.addNote(Note(text = text))
         }
     }
 }
