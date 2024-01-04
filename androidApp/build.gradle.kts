@@ -4,10 +4,10 @@ plugins {
 }
 
 android {
-    namespace = "com.adrianotelesc.notes.android"
+    namespace = "com.adrianotelesc.postnote.android"
     compileSdk = 34
     defaultConfig {
-        applicationId = "com.adrianotelesc.notes.android"
+        applicationId = "com.adrianotelesc.postnote.android"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

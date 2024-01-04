@@ -47,7 +47,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.adrianotelesc.notes"
+    namespace = "com.adrianotelesc.postnote"
     compileSdk = 33
     defaultConfig {
         minSdk = 24
