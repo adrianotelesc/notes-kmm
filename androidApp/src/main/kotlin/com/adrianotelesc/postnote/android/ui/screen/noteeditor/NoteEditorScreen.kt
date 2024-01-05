@@ -54,7 +54,7 @@ fun NoteEditorScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun Content(
-    uiState: NoteEditorUiState,
+    uiState: NoteEditorUiState = NoteEditorUiState(),
     updateNote: (text: String) -> Unit = {},
     navigateUp: () -> Unit = {},
 ) {
