@@ -9,7 +9,7 @@ expect abstract class ViewModel<S: Any, E: Any>() {
 
     abstract val uiState: StateFlow<S>
 
-    abstract val sideEffect: SharedFlow<E>
+    abstract val uiEffect: SharedFlow<E>
 
     protected open fun onCleared()
 }

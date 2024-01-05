@@ -10,7 +10,7 @@ actual abstract class ViewModel<S: Any, E: Any> : AndroidXViewModel() {
 
     actual abstract val uiState: StateFlow<S>
 
-    actual abstract val sideEffect: SharedFlow<E>
+    actual abstract val uiEffect: SharedFlow<E>
 
     actual override fun onCleared() {
         super.onCleared()
