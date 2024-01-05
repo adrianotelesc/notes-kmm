@@ -1,25 +1,25 @@
 //
-//  ObservableNotesViewModel.swift
+//  ObservableNoteEditorViewModel.swift
 //  iosApp
 //
-//  Created by Adriano Teles on 24/09/23.
+//  Created by Adriano Teles on 05/01/24.
 //  Copyright © 2023 orgName. All rights reserved.
 //
 
 import shared
 import Combine
 
-class ObservableNotesViewModel: ObservableObject {
-    @Published var uiState: NotesUiState = NotesUiState(notes: [])
+class ObservableNoteEditorViewModel: ObservableObject {
+    @Published var uiState: NoteEditorUiState = NoteEditorUiState(note: Note(id: "", text: ""))
     
     private var uiStateCloseable : Closeable?
     
     private var uiEffectCloseable : Closeable?
-    let uiEffectPublisher = PassthroughSubject<NotesUiEffect, Never>()
+    let uiEffectPublisher = PassthroughSubject<NoteEditorUiEffect, Never>()
     
-    private var viewModel: NotesViewModel
+    private var viewModel: NoteEditorViewModel
     
-    init(viewModel: NotesViewModel = KoinHelper().notesViewModel) {
+    init(viewModel: NoteEditorViewModel = KoinHelper().noteEditorViewModel) {
         self.viewModel = viewModel
 
         uiStateCloseable = self.viewModel.watchUiState().watch { [weak self] uiState in
@@ -35,11 +35,11 @@ class ObservableNotesViewModel: ObservableObject {
         uiEffectCloseable?.close()
     }
     
-    func newNote() {
-        viewModel.doNewNote()
+    func loadNoteBy(id: String?) {
+        viewModel.loadNoteBy(id: id)
     }
     
-    func openNote(noteId: String?) {
-        viewModel.openNote(noteId: noteId)
+    func updateNote(text: String) {
+        viewModel.updateNote(text: text)
     }
 }

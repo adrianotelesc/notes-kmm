@@ -14,7 +14,7 @@ actual abstract class ViewModel<S : Any, E : Any> {
 
     inline fun watchUiState(): CFlow<S> = uiState.wrap()
 
-    inline fun watchSideEffect(): CFlow<E> = uiEffect.wrap()
+    inline fun watchUiEffect(): CFlow<E> = uiEffect.wrap()
 
     protected actual open fun onCleared() {
     }

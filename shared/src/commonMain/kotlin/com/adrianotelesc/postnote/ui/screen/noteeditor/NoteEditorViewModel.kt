@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class NoteEditorViewModel(
-    noteId: String?,
     private val noteRepo: NoteRepository,
 ) : ViewModel<NoteEditorUiState, NoteEditorUiEffect>() {
     private val _uiState = MutableStateFlow(value = NoteEditorUiState())
@@ -19,9 +18,9 @@ class NoteEditorViewModel(
     private val _uiEffect = MutableSharedFlow<NoteEditorUiEffect>()
     override val uiEffect: SharedFlow<NoteEditorUiEffect> = _uiEffect
 
-    init {
-        noteId?.let {
-            noteRepo.findBy(id = noteId)?.let { existingNote ->
+    fun loadNoteBy(id: String?) {
+        id?.let {
+            noteRepo.findBy(id = id)?.let { existingNote ->
                 _uiState.update { uiState ->
                     uiState.copy(note = existingNote)
                 }

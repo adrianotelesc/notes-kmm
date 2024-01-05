@@ -37,6 +37,10 @@ fun NoteEditorScreen(
     viewModel: NoteEditorViewModel = koinViewModel(parameters = { parametersOf(noteId) }),
     navigateUp: () -> Unit = {}
 ) {
+    LaunchedEffect(key1 = Unit) {
+        viewModel.loadNoteBy(id = noteId)
+    }
+
     viewModel.uiEffect.collectInLaunchedEffectWithLifecycle { uiEffect ->
         when(uiEffect) {
             NoteEditorUiEffect.NavigateUp -> navigateUp()

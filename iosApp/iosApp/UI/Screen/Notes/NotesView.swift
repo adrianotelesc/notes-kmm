@@ -13,6 +13,8 @@ import SwiftUIMasonry
 struct NotesScreen : View {
     @ObservedObject var viewModel = ObservableNotesViewModel()
     
+    @State private var go: Bool = false
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -27,6 +29,7 @@ struct NotesScreen : View {
                     }
                 }
                 .padding(16)
+                NavigationLink(destination: NoteEditorView(), isActive: $go) { EmptyView() }
             }
             .navigationTitle("Notes")
             .toolbar {
@@ -42,13 +45,16 @@ struct NotesScreen : View {
                         .padding(EdgeInsets.init(top: 0, leading: 40, bottom: 0, trailing: 0))
                     Spacer()
                     Button(action: {
-                        viewModel.addNote()
+                        viewModel.newNote()
                     }) {
                         Image(systemName: "square.and.pencil").imageScale(.large)
                     }
                 }
                 
             }
+        }
+        .onReceive(viewModel.uiEffectPublisher) { uiEffect in
+            self.go = true
         }
     }
 }

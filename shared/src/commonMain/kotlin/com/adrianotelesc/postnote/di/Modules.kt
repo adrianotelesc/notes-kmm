@@ -13,12 +13,7 @@ private val repoModule = module {
 
 val viewModelModule = module {
     viewModel { NotesViewModel(noteRepo = get()) }
-    viewModel { params ->
-        NoteEditorViewModel(
-            noteId = params.get(),
-            noteRepo = get(),
-        )
-    }
+    viewModel { NoteEditorViewModel(noteRepo = get()) }
 }
 
 val sharedModules = viewModelModule + repoModule
