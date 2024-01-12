@@ -15,6 +15,7 @@
 		7D5371BA2AC0BAFC00A6E98B /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5371B92AC0BAFC00A6E98B /* NotesView.swift */; };
 		7D5371BC2AC0C33F00A6E98B /* ObservableNotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5371BB2AC0C33F00A6E98B /* ObservableNotesViewModel.swift */; };
 		7D53FF182B48A3F40056A4A3 /* ObservableNoteEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D53FF172B48A3F40056A4A3 /* ObservableNoteEditorViewModel.swift */; };
+		7DB06F4C2B5164EC0076A0FD /* NoteEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB06F4B2B5164EC0076A0FD /* NoteEditorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,6 +41,7 @@
 		7D5371B92AC0BAFC00A6E98B /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		7D5371BB2AC0C33F00A6E98B /* ObservableNotesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableNotesViewModel.swift; sourceTree = "<group>"; };
 		7D53FF172B48A3F40056A4A3 /* ObservableNoteEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableNoteEditorViewModel.swift; sourceTree = "<group>"; };
+		7DB06F4B2B5164EC0076A0FD /* NoteEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,9 +122,18 @@
 		7D53FF062B48A2B60056A4A3 /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				7DB06F4A2B5164DD0076A0FD /* Note Editor */,
 				7D53FF052B48A29F0056A4A3 /* Notes */,
 			);
 			path = Screen;
+			sourceTree = "<group>";
+		};
+		7DB06F4A2B5164DD0076A0FD /* Note Editor */ = {
+			isa = PBXGroup;
+			children = (
+				7DB06F4B2B5164EC0076A0FD /* NoteEditorView.swift */,
+			);
+			path = "Note Editor";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +239,7 @@
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				7D53FF182B48A3F40056A4A3 /* ObservableNoteEditorViewModel.swift in Sources */,
 				7D5371BC2AC0C33F00A6E98B /* ObservableNotesViewModel.swift in Sources */,
+				7DB06F4C2B5164EC0076A0FD /* NoteEditorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
