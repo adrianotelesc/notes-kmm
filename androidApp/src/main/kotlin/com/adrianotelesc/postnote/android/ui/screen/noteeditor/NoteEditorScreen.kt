@@ -29,12 +29,11 @@ import com.adrianotelesc.postnote.ui.screen.noteeditor.NoteEditorUiEffect
 import com.adrianotelesc.postnote.ui.screen.noteeditor.NoteEditorUiState
 import com.adrianotelesc.postnote.ui.screen.noteeditor.NoteEditorViewModel
 import org.koin.androidx.compose.koinViewModel
-import org.koin.core.parameter.parametersOf
 
 @Composable
 fun NoteEditorScreen(
     noteId: String?,
-    viewModel: NoteEditorViewModel = koinViewModel(parameters = { parametersOf(noteId) }),
+    viewModel: NoteEditorViewModel = koinViewModel(),
     navigateUp: () -> Unit = {}
 ) {
     LaunchedEffect(key1 = Unit) {
@@ -42,7 +41,7 @@ fun NoteEditorScreen(
     }
 
     viewModel.uiEffect.collectInLaunchedEffectWithLifecycle { uiEffect ->
-        when(uiEffect) {
+        when (uiEffect) {
             NoteEditorUiEffect.NavigateUp -> navigateUp()
         }
     }
