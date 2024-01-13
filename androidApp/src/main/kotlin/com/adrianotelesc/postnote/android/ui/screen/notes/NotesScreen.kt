@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import com.adrianotelesc.postnote.android.R
 import com.adrianotelesc.postnote.android.ui.component.StickyNote
 import com.adrianotelesc.postnote.android.ui.preview.NotesPreviewParameterProvider
-import com.adrianotelesc.postnote.android.ui.theme.MyApplicationTheme
+import com.adrianotelesc.postnote.android.ui.theme.PostnoteTheme
 import com.adrianotelesc.postnote.android.util.collectInLaunchedEffectWithLifecycle
 import com.adrianotelesc.postnote.data.model.Note
 import com.adrianotelesc.postnote.ui.screen.notes.NotesUiEffect
@@ -106,7 +106,7 @@ fun Content(
 fun ContentPreview(
     @PreviewParameter(NotesPreviewParameterProvider::class) notes: List<Note>,
 ) {
-    MyApplicationTheme {
+    PostnoteTheme {
         Content(uiState = NotesUiState(notes = notes))
     }
 }

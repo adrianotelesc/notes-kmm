@@ -22,7 +22,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.adrianotelesc.postnote.android.R
 import com.adrianotelesc.postnote.android.ui.component.TextEditor
 import com.adrianotelesc.postnote.android.ui.preview.NotePreviewParameterProvider
-import com.adrianotelesc.postnote.android.ui.theme.MyApplicationTheme
+import com.adrianotelesc.postnote.android.ui.theme.PostnoteTheme
 import com.adrianotelesc.postnote.android.util.collectInLaunchedEffectWithLifecycle
 import com.adrianotelesc.postnote.data.model.Note
 import com.adrianotelesc.postnote.ui.screen.noteeditor.NoteEditorUiEffect
@@ -103,7 +103,7 @@ private fun Content(
 fun ContentPreview(
     @PreviewParameter(NotePreviewParameterProvider::class) note: Note,
 ) {
-    MyApplicationTheme {
+    PostnoteTheme {
         Content(uiState = NoteEditorUiState(note = note))
     }
 }
