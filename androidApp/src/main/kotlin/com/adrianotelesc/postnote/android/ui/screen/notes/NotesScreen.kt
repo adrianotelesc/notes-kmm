@@ -17,13 +17,13 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.adrianotelesc.postnote.android.R
 import com.adrianotelesc.postnote.android.ui.component.StickyNote
 import com.adrianotelesc.postnote.android.ui.preview.NotesPreviewParameterProvider
@@ -38,8 +38,7 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun NotesScreen(
     viewModel: NotesViewModel = koinViewModel(),
-    newNote: () -> Unit = {},
-    openNote: (noteId: String?) -> Unit = {},
+    navigateToNoteEditor: (noteId: String?) -> Unit = {},
 ) {
     LaunchedEffect(key1 = Unit) {
         viewModel.loadNotes()
@@ -47,16 +46,15 @@ fun NotesScreen(
 
     viewModel.uiEffect.collectInLaunchedEffectWithLifecycle { uiEffect ->
         when (uiEffect) {
-            NotesUiEffect.NewNote -> newNote()
-            is NotesUiEffect.OpenNote -> openNote(uiEffect.noteId)
+            is NotesUiEffect.NavigateToNoteEditor -> navigateToNoteEditor(uiEffect.noteId)
         }
     }
 
-    val uiState by viewModel.uiState.collectAsState()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     Content(
         uiState = uiState,
-        newNote = viewModel::newNote,
-        openNote = viewModel::openNote,
+        newNote = viewModel::createOrOpenNote,
+        openNote = viewModel::createOrOpenNote,
     )
 }
 
@@ -65,7 +63,7 @@ fun NotesScreen(
 fun Content(
     uiState: NotesUiState = NotesUiState(),
     newNote: () -> Unit = {},
-    openNote: (noteId: String?) -> Unit = {},
+    openNote: (note: Note?) -> Unit = {},
 ) {
     val listState = rememberLazyStaggeredGridState()
     Scaffold(
@@ -96,9 +94,8 @@ fun Content(
         ) {
             items(items = uiState.notes) { note ->
                 StickyNote(
-                    id = note.id,
                     text = note.text,
-                    onClick = openNote,
+                    onClick = { openNote(note) },
                 )
             }
         }

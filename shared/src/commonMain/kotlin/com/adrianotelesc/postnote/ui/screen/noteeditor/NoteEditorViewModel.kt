@@ -19,22 +19,19 @@ class NoteEditorViewModel(
     override val uiEffect: SharedFlow<NoteEditorUiEffect> = _uiEffect
 
     fun loadNoteBy(id: String?) {
-        id?.let {
-            _uiState.update { uiState ->
-                uiState.copy(
-                    note = noteRepo.findBy(id = id) ?: uiState.note,
-                    isActive = true,
-                )
-            }
+        val existingNote = id?.let { noteRepo.findBy(id = id) }
+        _uiState.update { uiState ->
+            uiState.copy(
+                note = existingNote ?: uiState.note,
+                isActive = true,
+            )
         }
     }
 
     fun updateNote(text: String) {
-        val changedNote = _uiState.value.note.copy(text = text)
-        _uiState.update { uiState ->
-            uiState.copy(note = changedNote)
-        }
-        noteRepo.update(note = changedNote)
+        val updatedNote = _uiState.value.note.copy(text = text)
+        _uiState.update { uiState -> uiState.copy(note = updatedNote) }
+        noteRepo.update(note = updatedNote)
     }
 
     fun navigateUp() {

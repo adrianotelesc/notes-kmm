@@ -29,15 +29,9 @@ class NotesViewModel(
         }
     }
 
-    fun newNote() {
+    fun createOrOpenNote(note: Note? = null) {
         viewModelScope.launch {
-            _uiEffect.emit(value = NotesUiEffect.NewNote)
-        }
-    }
-
-    fun openNote(noteId: String?) {
-        viewModelScope.launch {
-            _uiEffect.emit(value = NotesUiEffect.OpenNote(noteId = noteId))
+            _uiEffect.emit(value = NotesUiEffect.NavigateToNoteEditor(noteId = note?.id))
         }
     }
 }

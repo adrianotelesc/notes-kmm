@@ -17,11 +17,10 @@ import com.adrianotelesc.postnote.android.ui.theme.PostnoteTheme
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun StickyNote(
-    id: String = "",
     text: String,
-    onClick: (id: String?) -> Unit = {},
+    onClick: () -> Unit = {},
 ) {
-    Card(onClick = { onClick(id) }) {
+    Card(onClick = { onClick() }) {
         Text(
             modifier = Modifier.padding(all = 16.dp),
             text = text,
