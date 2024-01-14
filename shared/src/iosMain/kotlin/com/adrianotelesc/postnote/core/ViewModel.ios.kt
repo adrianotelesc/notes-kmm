@@ -12,9 +12,9 @@ actual abstract class ViewModel<S : Any, E : Any> {
 
     actual abstract val uiEffect: SharedFlow<E>
 
-    inline fun watchUiState(): CFlow<S> = uiState.wrap()
+    inline fun uiStateAsCFlow(): CFlow<S> = uiState.toCFlow()
 
-    inline fun watchUiEffect(): CFlow<E> = uiEffect.wrap()
+    inline fun uiEffectAsCFlow(): CFlow<E> = uiEffect.toCFlow()
 
     protected actual open fun onCleared() {
     }
