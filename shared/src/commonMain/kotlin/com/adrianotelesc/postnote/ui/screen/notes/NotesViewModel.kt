@@ -19,11 +19,7 @@ class NotesViewModel(
     private val _uiEffect = MutableSharedFlow<NotesUiEffect>()
     override val uiEffect: SharedFlow<NotesUiEffect> = _uiEffect
 
-    init {
-        loadNotes()
-    }
-
-    private fun loadNotes() {
+    fun loadNotes() {
         viewModelScope.launch {
             noteRepo.notes.collect { notes ->
                 _uiState.update { uiState ->

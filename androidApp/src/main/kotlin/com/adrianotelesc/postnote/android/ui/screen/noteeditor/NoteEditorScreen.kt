@@ -13,9 +13,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -62,14 +64,6 @@ private fun Content(
     navigateUp: () -> Unit = {},
 ) {
     val scrollState = rememberScrollState()
-    var textFieldValue by remember {
-        mutableStateOf(value = TextFieldValue(text = uiState.note.text))
-    }
-
-    LaunchedEffect(key1 = textFieldValue) {
-        updateNote(textFieldValue.text)
-    }
-
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -86,14 +80,29 @@ private fun Content(
             )
         },
     ) { padding ->
-        TextEditor(
-            modifier = Modifier.fillMaxSize(),
-            padding = padding,
-            scrollState = scrollState,
-            autoFocus = textFieldValue.text.isEmpty(),
-            value = textFieldValue,
-            onValueChange = { textFieldValue = it },
-        )
+        if (uiState.isActive) {
+            var textFieldValue by rememberSaveable(
+                uiState.note.text,
+                stateSaver = TextFieldValue.Saver,
+            ) {
+                mutableStateOf(
+                    value = TextFieldValue(
+                        text = uiState.note.text,
+                        selection = TextRange(uiState.note.text.length),
+                    ),
+                )
+            }
+            TextEditor(
+                modifier = Modifier.fillMaxSize(),
+                padding = padding,
+                scrollState = scrollState,
+                autoFocus = uiState.note.isEmpty,
+                value = textFieldValue,
+                onValueChange = { value ->
+                    textFieldValue = value.also { updateNote(value.text) }
+                },
+            )
+        }
     }
 }
 
@@ -103,6 +112,6 @@ fun ContentPreview(
     @PreviewParameter(NotePreviewParameterProvider::class) note: Note,
 ) {
     PostnoteTheme {
-        Content(uiState = NoteEditorUiState(note = note))
+        Content(uiState = NoteEditorUiState(note = note, isActive = true))
     }
 }

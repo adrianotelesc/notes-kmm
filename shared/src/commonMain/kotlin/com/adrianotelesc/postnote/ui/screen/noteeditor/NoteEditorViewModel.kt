@@ -20,10 +20,11 @@ class NoteEditorViewModel(
 
     fun loadNoteBy(id: String?) {
         id?.let {
-            noteRepo.findBy(id = id)?.let { existingNote ->
-                _uiState.update { uiState ->
-                    uiState.copy(note = existingNote)
-                }
+            _uiState.update { uiState ->
+                uiState.copy(
+                    note = noteRepo.findBy(id = id) ?: uiState.note,
+                    isActive = true,
+                )
             }
         }
     }

@@ -12,8 +12,8 @@ private val repoModule = module {
 }
 
 val viewModelModule = module {
-    viewModel { NotesViewModel(noteRepo = get()) }
-    viewModel { NoteEditorViewModel(noteRepo = get()) }
+    viewModelOf(::NotesViewModel)
+    viewModelOf(::NoteEditorViewModel)
 }
 
 val sharedModules = viewModelModule + repoModule
