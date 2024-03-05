@@ -4,4 +4,8 @@ import com.adrianotelesc.postnote.data.model.Note
 
 data class NotesUiState(
     val notes: List<Note> = emptyList(),
-)
+) {
+    companion object {
+        fun default(): NotesUiState = NotesUiState()
+    }
+}

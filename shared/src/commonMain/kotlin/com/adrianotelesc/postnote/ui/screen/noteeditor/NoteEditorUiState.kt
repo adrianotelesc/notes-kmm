@@ -5,4 +5,8 @@ import com.adrianotelesc.postnote.data.model.Note
 data class NoteEditorUiState(
     val isActive: Boolean = false,
     val note: Note = Note(),
-)
+) {
+    companion object {
+        fun default(): NoteEditorUiState = NoteEditorUiState()
+    }
+}
