@@ -39,7 +39,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+                implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
                 implementation("io.insert-koin:koin-android:3.4.3")
             }
         }
@@ -48,7 +48,7 @@ kotlin {
 
 android {
     namespace = "com.adrianotelesc.postnote"
-    compileSdk = 33
+    compileSdk = 34
     defaultConfig {
         minSdk = 24
     }
