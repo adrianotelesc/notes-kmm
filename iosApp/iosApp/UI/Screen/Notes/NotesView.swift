@@ -10,51 +10,53 @@ import SwiftUI
 import shared
 import SwiftUIMasonry
 
-struct NotesScreen : View {
-    @ObservedObject var viewModel = ObservableNotesViewModel()
+struct NotesView : View {
+    @EnvironmentObject private var navController: NavController
     
-    @State private var go: Bool = false
+    @StateObject var viewModel = ViewModel()
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                VMasonry(columns: 2, spacing: 8) {
-                    ForEach(viewModel.uiState.notes, id: \.text) { note in
-                        Text(note.text)
-                            .lineLimit(10)
-                            .frame(maxWidth: .infinity, alignment: .center)
-                            .padding(16)
-                            .background(Color(uiColor: .secondarySystemBackground))
-                            .cornerRadius(8)
-                    }
+        ScrollView {
+            VMasonry(columns: 2, spacing: 8) {
+                ForEach(viewModel.uiState.notes, id: \.text) { note in
+                    StickyNoteView(text: note.text)
+                        .onTapGesture(perform: { viewModel.createOrOpenNote(note: note) })
                 }
-                .padding(16)
-                NavigationLink(destination: NoteEditorView(), isActive: $go) { EmptyView() }
             }
-            .navigationTitle("Notes")
-            .toolbar {
-                ToolbarItemGroup(placement: .bottomBar) {
-                    Spacer()
-                    let noteCount = viewModel.uiState.notes.count
-                    let text = if noteCount > 0 {
-                        String(AttributedString(localized: "^[\(noteCount) Note](inflect: true)").characters)
-                    } else {
-                        "No Notes"
-                    }
-                    Text(text)
-                        .padding(EdgeInsets.init(top: 0, leading: 40, bottom: 0, trailing: 0))
-                    Spacer()
-                    Button(action: {
-                        viewModel.newNote()
-                    }) {
-                        Image(systemName: "square.and.pencil").imageScale(.large)
-                    }
+            .padding(16)
+        }
+        .navigationTitle("Notes")
+        .toolbar {
+            ToolbarItemGroup(placement: .bottomBar) {
+                Spacer()
+                let noteCount = viewModel.uiState.notes.count
+                let text = if noteCount > 0 {
+                    String(AttributedString(localized: "^[\(noteCount) Note](inflect: true)").characters)
+                } else {
+                    "No Notes"
                 }
-                
+                Text(text)
+                    .padding(EdgeInsets.init(top: 0, leading: 40, bottom: 0, trailing: 0))
+                Spacer()
+                Button(action: { viewModel.createOrOpenNote() }) {
+                    Image(systemName: "square.and.pencil").imageScale(.large)
+                }
             }
         }
+        .onAppear(perform: { viewModel.loadNotes() })
         .onReceive(viewModel.uiEffectPublisher) { uiEffect in
-            self.go = true
+            switch (uiEffect) {
+            case let navigateToNoteEditorUiEffect as NotesUiEffect.NavigateToNoteEditor:
+                navController.navigate(to: .noteEditor(noteId: navigateToNoteEditorUiEffect.noteId))
+            default:
+                break
+            }
         }
+    }
+}
+
+struct NotesViewPreview: PreviewProvider {
+    static var previews: some View {
+        NotesView()
     }
 }

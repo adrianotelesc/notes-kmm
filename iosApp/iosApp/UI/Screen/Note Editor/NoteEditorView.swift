@@ -7,27 +7,44 @@
 //
 
 import SwiftUI
+import shared
 
 struct NoteEditorView: View {
-    @StateObject private var viewModel = ObservableNoteEditorViewModel()
+    @EnvironmentObject private var navController: NavController
+    
+    @StateObject private var viewModel = ViewModel()
+    
+    @State private var text: String = ""
     
     @FocusState private var focused: Bool
     
-    @State private var text = ""
+    private var noteId: String?
     
     init(noteId: String? = nil) {
-        viewModel.loadNoteBy(id: noteId)
+        self.noteId = noteId
     }
     
     var body: some View {
         TextEditor(text: $text)
             .navigationBarTitleDisplayMode(.inline)
             .focused($focused)
-            .onAppear(perform: {
-                self.focused = text.isEmpty
-            })
             .autocorrectionDisabled()
             .textInputAutocapitalization(.none)
+            .onAppear(perform: { viewModel.loadNoteBy(id: noteId) })
+            .onChange(of: text) { _, newText in
+                viewModel.updateNote(text: text)
+            }
+            .onChange(of: viewModel.uiState, initial: false) { _, newUiState  in
+                text = newUiState.note.text
+            }
+            .onReceive(viewModel.uiEffectPublisher) { uiEffect in
+                switch (uiEffect) {
+                case _ as NoteEditorUiEffect.NavigateUp:
+                    navController.navigateUp()
+                default:
+                    break
+                }
+            }
     }
 }
 
@@ -36,4 +53,3 @@ struct NoteEditorViewPreview: PreviewProvider {
         NoteEditorView()
     }
 }
-

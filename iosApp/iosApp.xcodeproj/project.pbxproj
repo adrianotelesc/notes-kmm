@@ -13,9 +13,12 @@
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		7D417FD62AD7FC080044C3B7 /* SwiftUIMasonry in Frameworks */ = {isa = PBXBuildFile; productRef = 7D417FD52AD7FC080044C3B7 /* SwiftUIMasonry */; };
 		7D5371BA2AC0BAFC00A6E98B /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5371B92AC0BAFC00A6E98B /* NotesView.swift */; };
-		7D5371BC2AC0C33F00A6E98B /* ObservableNotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5371BB2AC0C33F00A6E98B /* ObservableNotesViewModel.swift */; };
-		7D53FF182B48A3F40056A4A3 /* ObservableNoteEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D53FF172B48A3F40056A4A3 /* ObservableNoteEditorViewModel.swift */; };
+		7D5371BC2AC0C33F00A6E98B /* NotesView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5371BB2AC0C33F00A6E98B /* NotesView+ViewModel.swift */; };
+		7D53FF182B48A3F40056A4A3 /* NoteEditorView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D53FF172B48A3F40056A4A3 /* NoteEditorView+ViewModel.swift */; };
 		7DB06F4C2B5164EC0076A0FD /* NoteEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB06F4B2B5164EC0076A0FD /* NoteEditorView.swift */; };
+		7DE158BF2B54844D008574E3 /* ObservableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE158BE2B54844D008574E3 /* ObservableViewModel.swift */; };
+		7DE158C32B54914A008574E3 /* StickyNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE158C22B54914A008574E3 /* StickyNote.swift */; };
+		7DE158C62B54E0F3008574E3 /* NavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE158C52B54E0F3008574E3 /* NavController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,9 +42,12 @@
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D5371B92AC0BAFC00A6E98B /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
-		7D5371BB2AC0C33F00A6E98B /* ObservableNotesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableNotesViewModel.swift; sourceTree = "<group>"; };
-		7D53FF172B48A3F40056A4A3 /* ObservableNoteEditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableNoteEditorViewModel.swift; sourceTree = "<group>"; };
+		7D5371BB2AC0C33F00A6E98B /* NotesView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotesView+ViewModel.swift"; sourceTree = "<group>"; };
+		7D53FF172B48A3F40056A4A3 /* NoteEditorView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteEditorView+ViewModel.swift"; sourceTree = "<group>"; };
 		7DB06F4B2B5164EC0076A0FD /* NoteEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditorView.swift; sourceTree = "<group>"; };
+		7DE158BE2B54844D008574E3 /* ObservableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableViewModel.swift; sourceTree = "<group>"; };
+		7DE158C22B54914A008574E3 /* StickyNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickyNote.swift; sourceTree = "<group>"; };
+		7DE158C52B54E0F3008574E3 /* NavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,12 +70,21 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		6D382359599ECEC4C3AA67D1 /* xcschemes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = xcschemes;
+			path = iosApp.xcodeproj/project.xcworkspace/xcuserdata/adrianotelesc.xcuserdatad/xcschemes;
+			sourceTree = "<group>";
+		};
 		7555FF72242A565900829871 = {
 			isa = PBXGroup;
 			children = (
 				7555FF7D242A565900829871 /* iosApp */,
 				7555FF7C242A565900829871 /* Products */,
 				7555FFB0242A642200829871 /* Frameworks */,
+				6D382359599ECEC4C3AA67D1 /* xcschemes */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,10 +100,9 @@
 			isa = PBXGroup;
 			children = (
 				7D53FF042B48A2920056A4A3 /* UI */,
+				7DE158C02B548825008574E3 /* Util */,
 				7555FF82242A565900829871 /* ContentView.swift */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
-				7D5371BB2AC0C33F00A6E98B /* ObservableNotesViewModel.swift */,
-				7D53FF172B48A3F40056A4A3 /* ObservableNoteEditorViewModel.swift */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
@@ -106,6 +120,8 @@
 		7D53FF042B48A2920056A4A3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				7DE158C42B54E0D8008574E3 /* Navigation */,
+				7DE158C12B54913D008574E3 /* Component */,
 				7D53FF062B48A2B60056A4A3 /* Screen */,
 			);
 			path = UI;
@@ -115,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				7D5371B92AC0BAFC00A6E98B /* NotesView.swift */,
+				7D5371BB2AC0C33F00A6E98B /* NotesView+ViewModel.swift */,
 			);
 			path = Notes;
 			sourceTree = "<group>";
@@ -132,8 +149,33 @@
 			isa = PBXGroup;
 			children = (
 				7DB06F4B2B5164EC0076A0FD /* NoteEditorView.swift */,
+				7D53FF172B48A3F40056A4A3 /* NoteEditorView+ViewModel.swift */,
 			);
 			path = "Note Editor";
+			sourceTree = "<group>";
+		};
+		7DE158C02B548825008574E3 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				7DE158BE2B54844D008574E3 /* ObservableViewModel.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		7DE158C12B54913D008574E3 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				7DE158C22B54914A008574E3 /* StickyNote.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		7DE158C42B54E0D8008574E3 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				7DE158C52B54E0F3008574E3 /* NavController.swift */,
+			);
+			path = Navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,11 +276,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DE158C32B54914A008574E3 /* StickyNote.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				7DE158BF2B54844D008574E3 /* ObservableViewModel.swift in Sources */,
 				7D5371BA2AC0BAFC00A6E98B /* NotesView.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
-				7D53FF182B48A3F40056A4A3 /* ObservableNoteEditorViewModel.swift in Sources */,
-				7D5371BC2AC0C33F00A6E98B /* ObservableNotesViewModel.swift in Sources */,
+				7DE158C62B54E0F3008574E3 /* NavController.swift in Sources */,
+				7D53FF182B48A3F40056A4A3 /* NoteEditorView+ViewModel.swift in Sources */,
+				7D5371BC2AC0C33F00A6E98B /* NotesView+ViewModel.swift in Sources */,
 				7DB06F4C2B5164EC0076A0FD /* NoteEditorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,7 +419,7 @@
 					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
 				);
 				INFOPLIST_FILE = iosApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -403,7 +448,7 @@
 					"$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)",
 				);
 				INFOPLIST_FILE = iosApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
